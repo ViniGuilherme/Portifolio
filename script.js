@@ -338,3 +338,63 @@ scrollStyle.textContent = `
     }
 `;
 document.head.appendChild(scrollStyle);
+
+// ============================================
+// MODAL DE EXPANSÃO DE IMAGENS
+// ============================================
+
+// Função para abrir o modal com a imagem
+function openImageModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    
+    if (modal && modalImg) {
+        modal.classList.add('active');
+        modalImg.src = imageSrc;
+        document.body.style.overflow = 'hidden'; // Prevenir scroll do body
+    }
+}
+
+// Função para fechar o modal
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restaurar scroll do body
+    }
+}
+
+// Adicionar event listeners para as imagens dos projetos
+document.addEventListener('DOMContentLoaded', () => {
+    const projectImages = document.querySelectorAll('.project-img');
+    
+    projectImages.forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.stopPropagation();
+            openImageModal(this.src);
+        });
+    });
+    
+    // Fechar modal ao clicar no botão de fechar
+    const closeBtn = document.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeImageModal);
+    }
+    
+    // Fechar modal ao clicar fora da imagem
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target.classList.contains('modal-content')) {
+                closeImageModal();
+            }
+        });
+    }
+    
+    // Fechar modal com a tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+});

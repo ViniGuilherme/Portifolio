@@ -667,10 +667,11 @@ section:not(.banner).revealed {
     object-fit: cover;
     display: block;
     transition: transform var(--transition-slow);
+    cursor: pointer;
 }
 
 .project-card:hover .project-img {
-    transform: scale(1.05);
+    transform: scale(1.25);
 }
 
 .project-card h3 {
@@ -737,10 +738,11 @@ section:not(.banner).revealed {
 
 .contact-subtitle {
     text-align: center;
-    margin-bottom: 3rem;
     font-size: 1.1rem;
     color: var(--vs-text);
     font-family: 'Roboto Mono', monospace;
+    margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 .contact-grid {
@@ -759,9 +761,11 @@ section:not(.banner).revealed {
     text-align: center;
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-card);
-    display: block;
+    display: flex;
     border-radius: 12px;
     backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
 }
 
 .contact-card:hover {
@@ -932,6 +936,91 @@ footer p {
     .game-ui-top {
         font-size: 0.65rem;
     }
+}
+
+/* ============================================
+   MODAL DE EXPANSÃO DE IMAGENS
+   ============================================ */
+
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.image-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 2px solid var(--csharp-blue);
+    border-radius: 8px;
+    box-shadow: 
+        0 0 50px rgba(0, 122, 204, 0.5),
+        0 0 100px rgba(0, 122, 204, 0.3);
+    animation: zoomIn 0.3s ease;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: var(--vs-text-bright);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    z-index: 1001;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--csharp-blue);
+    backdrop-filter: blur(10px);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: var(--game-accent);
+    border-color: var(--game-accent);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
 }
 
 /* Scrollbar personalizada */
