@@ -1,0 +1,842 @@
+/* ============================================
+   TEMA C# + VIDEO GAMES
+   Cores: Visual Studio (#007ACC) + .NET (#68217A)
+   Estilo: Pixel Art + Retro Gaming
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores C# / Visual Studio */
+    --csharp-blue: #007ACC;
+    --csharp-blue-dark: #005A9E;
+    --csharp-blue-light: #1E90FF;
+    --dotnet-purple: #68217A;
+    --dotnet-purple-dark: #512B58;
+    --vs-dark: #1E1E1E;
+    --vs-darker: #0D0D0D;
+    --vs-text: #D4D4D4;
+    --vs-text-bright: #FFFFFF;
+    
+    /* Cores Games */
+    --game-green: #00FF41;
+    --game-cyan: #00FFFF;
+    --game-yellow: #FFFF00;
+    --game-red: #FF0040;
+    --game-orange: #FF6B00;
+    
+    /* Efeitos */
+    --glow-blue: 0 0 20px rgba(0, 122, 204, 0.6);
+    --glow-purple: 0 0 20px rgba(104, 33, 122, 0.6);
+    --glow-green: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.6;
+    color: var(--vs-text);
+    background: linear-gradient(135deg, var(--vs-darker) 0%, var(--vs-dark) 50%, var(--dotnet-purple-dark) 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efeito de grid pixelado no fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 122, 204, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 122, 204, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   BANNER / HEADER - Estilo Game UI
+   ============================================ */
+
+.banner {
+    background: linear-gradient(135deg, var(--vs-darker) 0%, var(--csharp-blue-dark) 50%, var(--dotnet-purple-dark) 100%);
+    color: var(--vs-text-bright);
+    padding: 4rem 0 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--csharp-blue);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 122, 204, 0.1) 2px,
+            rgba(0, 122, 204, 0.1) 4px
+        );
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.pixel-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--csharp-blue),
+        var(--csharp-blue) 10px,
+        var(--dotnet-purple) 10px,
+        var(--dotnet-purple) 20px
+    );
+    box-shadow: var(--glow-blue);
+}
+
+/* Game UI Top Bar */
+.game-ui-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--csharp-blue);
+    border-radius: 0;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+}
+
+.level-indicator {
+    color: var(--game-green);
+    text-shadow: 0 0 10px var(--game-green);
+}
+
+.xp-bar {
+    flex: 1;
+    max-width: 300px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--csharp-blue);
+    margin-left: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.xp-fill {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--game-green), var(--game-cyan));
+    width: 75%;
+    animation: xpPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--game-green);
+}
+
+@keyframes xpPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.banner h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 
+        0 0 10px var(--csharp-blue),
+        0 0 20px var(--csharp-blue),
+        0 0 30px var(--csharp-blue),
+        3px 3px 0 var(--dotnet-purple);
+    letter-spacing: 3px;
+}
+
+/* Efeito Glitch */
+.glitch {
+    position: relative;
+    animation: glitch 3s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--game-red);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--game-cyan), 2px 2px var(--game-red);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); }
+    20% { clip: rect(54px, 9999px, 66px, 0); }
+    40% { clip: rect(28px, 9999px, 99px, 0); }
+    60% { clip: rect(42px, 9999px, 78px, 0); }
+    80% { clip: rect(30px, 9999px, 87px, 0); }
+    100% { clip: rect(88px, 9999px, 32px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    20% { clip: rect(79px, 9999px, 85px, 0); }
+    40% { clip: rect(66px, 9999px, 99px, 0); }
+    60% { clip: rect(40px, 9999px, 73px, 0); }
+    80% { clip: rect(68px, 9999px, 97px, 0); }
+    100% { clip: rect(95px, 9999px, 58px, 0); }
+}
+
+.subtitle-pixel {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    color: var(--game-cyan);
+    text-shadow: 0 0 10px var(--game-cyan);
+    line-height: 1.8;
+}
+
+.pixel-divider {
+    width: 80%;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--csharp-blue),
+        var(--csharp-blue) 10px,
+        var(--dotnet-purple) 10px,
+        var(--dotnet-purple) 20px
+    );
+    margin: 2rem auto;
+    box-shadow: var(--glow-blue);
+}
+
+/* Navegação estilo pixel */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-pixel {
+    color: var(--vs-text-bright);
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    padding: 0.8rem 1.5rem;
+    border: 3px solid var(--csharp-blue);
+    background: rgba(0, 122, 204, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-pixel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--csharp-blue);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-pixel:hover {
+    color: var(--vs-text-bright);
+    background: var(--csharp-blue);
+    box-shadow: var(--glow-blue);
+    transform: translateY(-3px);
+}
+
+.nav-pixel:active {
+    transform: translateY(0);
+}
+
+.nav-pixel.active {
+    background: var(--csharp-blue);
+    box-shadow: var(--glow-blue);
+    color: var(--vs-text-bright);
+}
+
+/* Partículas de código */
+.code-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.code-particles::before,
+.code-particles::after {
+    content: '{ }';
+    position: absolute;
+    color: rgba(0, 122, 204, 0.1);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    animation: float 20s infinite;
+}
+
+.code-particles::before {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.code-particles::after {
+    top: 60%;
+    right: 10%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+    50% { transform: translateY(-50px) rotate(180deg); opacity: 0.3; }
+}
+
+/* ============================================
+   SEÇÃO SOBRE
+   ============================================ */
+
+#sobre {
+    padding: 6rem 0;
+    background: rgba(30, 30, 30, 0.8);
+    position: relative;
+    border-top: 4px solid var(--dotnet-purple);
+    border-bottom: 4px solid var(--dotnet-purple);
+}
+
+#sobre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
+    box-shadow: var(--glow-purple);
+}
+
+.section-title-pixel {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: var(--game-cyan);
+    text-shadow: 
+        0 0 10px var(--game-cyan),
+        3px 3px 0 var(--csharp-blue);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+#sobre h2 {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: var(--game-cyan);
+    text-shadow: 
+        0 0 10px var(--game-cyan),
+        3px 3px 0 var(--csharp-blue);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.sobre-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    border: 3px solid var(--csharp-blue);
+    box-shadow: var(--glow-blue);
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 0;
+    object-fit: cover;
+    border: 4px solid var(--csharp-blue);
+    box-shadow: var(--glow-blue);
+    transition: transform 0.3s ease;
+    image-rendering: pixelated;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--dotnet-purple);
+    box-shadow: var(--glow-purple);
+}
+
+.sobre-content p {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--vs-text);
+    text-align: justify;
+}
+
+/* ============================================
+   HABILIDADES - Estilo Game Skills
+   ============================================ */
+
+#habilidades {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+    position: relative;
+}
+
+.skills-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    border: 3px solid var(--csharp-blue);
+    box-shadow: var(--glow-blue);
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--dotnet-purple);
+    box-shadow: var(--glow-purple);
+}
+
+.category-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: var(--game-yellow);
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 0 0 10px var(--game-yellow);
+    text-transform: uppercase;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    list-style: none;
+    justify-content: center;
+}
+
+.skill-item {
+    background: linear-gradient(135deg, var(--csharp-blue-dark), var(--csharp-blue));
+    color: var(--vs-text-bright);
+    padding: 0.6rem 1.2rem;
+    border: 2px solid var(--csharp-blue-light);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.3);
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.skill-item::before {
+    content: '▸';
+    margin-right: 0.5rem;
+    color: var(--game-green);
+}
+
+.skill-item:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--glow-blue);
+    border-color: var(--game-cyan);
+}
+
+.skill-master {
+    background: linear-gradient(135deg, var(--dotnet-purple), var(--dotnet-purple-dark));
+    border-color: var(--game-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+.skill-master::before {
+    content: '★';
+    color: var(--game-yellow);
+}
+
+/* ============================================
+   PROJETOS - Cards estilo Game
+   ============================================ */
+
+#projetos {
+    padding: 6rem 0;
+    background: rgba(30, 30, 30, 0.8);
+    position: relative;
+    border-top: 4px solid var(--csharp-blue);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0;
+    border: 3px solid var(--csharp-blue);
+    box-shadow: var(--glow-blue);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--dotnet-purple);
+    box-shadow: var(--glow-purple);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 122, 204, 0.2);
+    border-bottom: 2px solid var(--csharp-blue);
+}
+
+.card-level {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5rem;
+    color: var(--game-green);
+    text-shadow: 0 0 5px var(--game-green);
+}
+
+.card-tech {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--game-cyan);
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid var(--csharp-blue);
+    transition: transform 0.3s ease;
+    image-rendering: pixelated;
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.1);
+}
+
+.project-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    margin: 1rem;
+    color: var(--vs-text-bright);
+    text-shadow: 0 0 10px var(--csharp-blue);
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin: 0 1rem 1.5rem;
+    color: var(--vs-text);
+    line-height: 1.6;
+}
+
+.btn-pixel {
+    display: block;
+    background: linear-gradient(135deg, var(--csharp-blue), var(--csharp-blue-dark));
+    color: var(--vs-text-bright);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    text-align: center;
+    margin: 0 1rem 1rem;
+    border: 2px solid var(--csharp-blue-light);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.3);
+}
+
+.btn-pixel:hover {
+    background: linear-gradient(135deg, var(--dotnet-purple), var(--dotnet-purple-dark));
+    border-color: var(--game-green);
+    box-shadow: var(--glow-green);
+    transform: translateY(-2px);
+}
+
+.btn-pixel:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   CONTATO - Cards estilo Game
+   ============================================ */
+
+#contato {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+    position: relative;
+    border-top: 4px solid var(--dotnet-purple);
+}
+
+.contact-subtitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--vs-text);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border: 3px solid var(--csharp-blue);
+    text-decoration: none;
+    color: var(--vs-text-bright);
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--glow-blue);
+    display: block;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--dotnet-purple);
+    box-shadow: var(--glow-purple);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+    filter: drop-shadow(0 0 10px var(--csharp-blue));
+}
+
+.contact-card:hover .contact-icon {
+    animation: bounce 0.5s ease;
+    filter: drop-shadow(0 0 15px var(--game-green));
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.contact-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--game-cyan);
+    text-shadow: 0 0 10px var(--game-cyan);
+}
+
+.contact-card p {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--vs-text);
+}
+
+/* ============================================
+   RODAPÉ
+   ============================================ */
+
+footer {
+    background: linear-gradient(135deg, var(--vs-darker) 0%, var(--dotnet-purple-dark) 100%);
+    color: var(--vs-text);
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+    border-top: 4px solid var(--csharp-blue);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
+    box-shadow: var(--glow-blue);
+}
+
+footer p {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--vs-text);
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle-pixel {
+        font-size: 0.6rem;
+    }
+
+    .game-ui-top {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .xp-bar {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-pixel {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sobre-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-pic {
+        margin: 0 auto;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title-pixel {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .project-card {
+        padding: 0;
+    }
+
+    .contact-card {
+        padding: 1.5rem;
+    }
+
+    .game-ui-top {
+        font-size: 0.5rem;
+    }
+}
