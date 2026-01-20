@@ -1,7 +1,6 @@
 /* ============================================
-   TEMA C# + VIDEO GAMES
-   Cores: Visual Studio (#007ACC) + .NET (#68217A)
-   Estilo: Pixel Art + Retro Gaming
+   PORTFÓLIO PROFISSIONAL - TEMA C# + GAMES
+   Design refinado mantendo essência técnica
    ============================================ */
 
 * {
@@ -11,42 +10,54 @@
 }
 
 :root {
-    /* Cores C# / Visual Studio */
+    /* Cores C# / Visual Studio - Refinadas */
     --csharp-blue: #007ACC;
     --csharp-blue-dark: #005A9E;
     --csharp-blue-light: #1E90FF;
+    --csharp-blue-soft: rgba(0, 122, 204, 0.1);
     --dotnet-purple: #68217A;
     --dotnet-purple-dark: #512B58;
+    --dotnet-purple-soft: rgba(104, 33, 122, 0.1);
     --vs-dark: #1E1E1E;
     --vs-darker: #0D0D0D;
+    --vs-card: #252526;
     --vs-text: #D4D4D4;
     --vs-text-bright: #FFFFFF;
+    --vs-text-muted: #858585;
     
-    /* Cores Games */
-    --game-green: #00FF41;
-    --game-cyan: #00FFFF;
-    --game-yellow: #FFFF00;
-    --game-red: #FF0040;
-    --game-orange: #FF6B00;
+    /* Cores Games - Mais sutis */
+    --game-green: #00D9FF;
+    --game-cyan: #00E5FF;
+    --game-accent: #00FF88;
     
-    /* Efeitos */
-    --glow-blue: 0 0 20px rgba(0, 122, 204, 0.6);
-    --glow-purple: 0 0 20px rgba(104, 33, 122, 0.6);
-    --glow-green: 0 0 15px rgba(0, 255, 65, 0.5);
+    /* Efeitos profissionais */
+    --glow-blue: 0 0 30px rgba(0, 122, 204, 0.4);
+    --glow-purple: 0 0 30px rgba(104, 33, 122, 0.4);
+    --glow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 12px 40px rgba(0, 122, 204, 0.2);
+    
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
 }
 
 body {
-    font-family: 'Roboto Mono', monospace;
-    line-height: 1.6;
+    font-family: 'Roboto Mono', 'Segoe UI', sans-serif;
+    line-height: 1.7;
     color: var(--vs-text);
-    background: linear-gradient(135deg, var(--vs-darker) 0%, var(--vs-dark) 50%, var(--dotnet-purple-dark) 100%);
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
     min-height: 100vh;
     background-attachment: fixed;
     position: relative;
     overflow-x: hidden;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Efeito de grid pixelado no fundo */
+/* Grid sutil no fundo */
 body::before {
     content: '';
     position: fixed;
@@ -55,9 +66,9 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 122, 204, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 122, 204, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
+        linear-gradient(rgba(0, 122, 204, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 122, 204, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
 }
@@ -65,48 +76,39 @@ body::before {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 2rem;
     position: relative;
     z-index: 1;
 }
 
 /* ============================================
-   BANNER / HEADER - Estilo Game UI
+   BANNER / HEADER - Profissional com toque game
    ============================================ */
 
 .banner {
-    background: linear-gradient(135deg, var(--vs-darker) 0%, var(--csharp-blue-dark) 50%, var(--dotnet-purple-dark) 100%);
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #16213e 100%);
     color: var(--vs-text-bright);
-    padding: 4rem 0 6rem;
+    padding: 5rem 0 7rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-    border-bottom: 4px solid var(--csharp-blue);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid var(--csharp-blue);
+    box-shadow: var(--glow-soft);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.banner::before {
+.banner::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 122, 204, 0.1) 2px,
-            rgba(0, 122, 204, 0.1) 4px
-        );
-    animation: scanline 8s linear infinite;
+    background: radial-gradient(circle at 30% 50%, rgba(0, 122, 204, 0.1) 0%, transparent 50%);
     pointer-events: none;
-}
-
-@keyframes scanline {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100vh); }
 }
 
 .pixel-border {
@@ -114,43 +116,50 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 8px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--csharp-blue),
-        var(--csharp-blue) 10px,
-        var(--dotnet-purple) 10px,
-        var(--dotnet-purple) 20px
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--csharp-blue) 20%,
+        var(--dotnet-purple) 50%,
+        var(--csharp-blue) 80%,
+        transparent 100%
     );
-    box-shadow: var(--glow-blue);
+    box-shadow: 0 0 20px rgba(0, 122, 204, 0.5);
 }
 
-/* Game UI Top Bar */
+/* Game UI Top - Mais elegante */
 .game-ui-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid var(--csharp-blue);
-    border-radius: 0;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.6rem;
+    margin-bottom: 3rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 122, 204, 0.3);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .level-indicator {
-    color: var(--game-green);
-    text-shadow: 0 0 10px var(--game-green);
+    color: var(--game-accent);
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .xp-bar {
     flex: 1;
-    max-width: 300px;
-    height: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid var(--csharp-blue);
+    max-width: 250px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 122, 204, 0.4);
+    border-radius: 8px;
     margin-left: 2rem;
     position: relative;
     overflow: hidden;
@@ -159,36 +168,36 @@ body::before {
 .xp-fill {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, var(--game-green), var(--game-cyan));
+    background: linear-gradient(90deg, var(--csharp-blue), var(--game-accent));
     width: 75%;
-    animation: xpPulse 2s ease-in-out infinite;
-    box-shadow: 0 0 10px var(--game-green);
+    border-radius: 8px;
+    animation: xpPulse 3s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.6);
 }
 
 @keyframes xpPulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+    50% { opacity: 0.9; }
 }
 
 .banner h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 900;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
     z-index: 1;
     text-shadow: 
-        0 0 10px var(--csharp-blue),
-        0 0 20px var(--csharp-blue),
-        0 0 30px var(--csharp-blue),
-        3px 3px 0 var(--dotnet-purple);
-    letter-spacing: 3px;
+        0 0 20px rgba(0, 122, 204, 0.5),
+        0 4px 20px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    line-height: 1.2;
 }
 
-/* Efeito Glitch */
+/* Glitch mais sutil */
 .glitch {
     position: relative;
-    animation: glitch 3s infinite;
+    animation: glitch-subtle 4s infinite;
 }
 
 .glitch::before,
@@ -199,77 +208,70 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
 }
 
 .glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 var(--game-red);
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
+    left: 1px;
+    text-shadow: -1px 0 rgba(0, 255, 136, 0.3);
+    animation: glitch-anim 6s infinite linear alternate-reverse;
 }
 
 .glitch::after {
-    left: -2px;
-    text-shadow: -2px 0 var(--game-cyan), 2px 2px var(--game-red);
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 1s infinite linear alternate-reverse;
+    left: -1px;
+    text-shadow: 1px 0 rgba(104, 33, 122, 0.3);
+    animation: glitch-anim2 4s infinite linear alternate-reverse;
 }
 
-@keyframes glitch {
+@keyframes glitch-subtle {
     0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
+    98% { transform: translate(0); }
+    99% { transform: translate(-1px, 1px); }
 }
 
 @keyframes glitch-anim {
-    0% { clip: rect(31px, 9999px, 94px, 0); }
-    20% { clip: rect(54px, 9999px, 66px, 0); }
-    40% { clip: rect(28px, 9999px, 99px, 0); }
-    60% { clip: rect(42px, 9999px, 78px, 0); }
-    80% { clip: rect(30px, 9999px, 87px, 0); }
-    100% { clip: rect(88px, 9999px, 32px, 0); }
+    0% { clip: rect(0, 9999px, 0, 0); opacity: 0; }
+    1% { clip: rect(31px, 9999px, 94px, 0); opacity: 0.1; }
+    2% { clip: rect(54px, 9999px, 66px, 0); opacity: 0; }
 }
 
 @keyframes glitch-anim2 {
-    0% { clip: rect(65px, 9999px, 100px, 0); }
-    20% { clip: rect(79px, 9999px, 85px, 0); }
-    40% { clip: rect(66px, 9999px, 99px, 0); }
-    60% { clip: rect(40px, 9999px, 73px, 0); }
-    80% { clip: rect(68px, 9999px, 97px, 0); }
-    100% { clip: rect(95px, 9999px, 58px, 0); }
+    0% { clip: rect(0, 9999px, 0, 0); opacity: 0; }
+    1% { clip: rect(65px, 9999px, 100px, 0); opacity: 0.1; }
+    2% { clip: rect(79px, 9999px, 85px, 0); opacity: 0; }
 }
 
 .subtitle-pixel {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
-    margin-bottom: 2rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    margin-bottom: 2.5rem;
     color: var(--game-cyan);
-    text-shadow: 0 0 10px var(--game-cyan);
-    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
 }
 
 .pixel-divider {
-    width: 80%;
-    height: 4px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--csharp-blue),
-        var(--csharp-blue) 10px,
-        var(--dotnet-purple) 10px,
-        var(--dotnet-purple) 20px
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--csharp-blue) 20%,
+        var(--dotnet-purple) 50%,
+        var(--csharp-blue) 80%,
+        transparent
     );
-    margin: 2rem auto;
-    box-shadow: var(--glow-blue);
+    margin: 2.5rem auto;
+    box-shadow: 0 0 15px rgba(0, 122, 204, 0.4);
 }
 
-/* Navegação estilo pixel */
+/* Navegação profissional */
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
     position: relative;
     z-index: 1;
@@ -278,15 +280,19 @@ nav ul {
 .nav-pixel {
     color: var(--vs-text-bright);
     text-decoration: none;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.7rem;
-    padding: 0.8rem 1.5rem;
-    border: 3px solid var(--csharp-blue);
-    background: rgba(0, 122, 204, 0.2);
-    transition: all 0.3s ease;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(0, 122, 204, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    transition: all var(--transition-normal);
     text-transform: uppercase;
+    letter-spacing: 1px;
     position: relative;
     display: inline-block;
+    backdrop-filter: blur(10px);
 }
 
 .nav-pixel::before {
@@ -296,30 +302,31 @@ nav ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--csharp-blue);
+    background: linear-gradient(135deg, var(--csharp-blue), var(--dotnet-purple));
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-normal);
+    border-radius: 6px;
     z-index: -1;
 }
 
 .nav-pixel:hover {
     color: var(--vs-text-bright);
-    background: var(--csharp-blue);
-    box-shadow: var(--glow-blue);
-    transform: translateY(-3px);
+    border-color: var(--csharp-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.3);
 }
 
-.nav-pixel:active {
-    transform: translateY(0);
+.nav-pixel:hover::before {
+    opacity: 0.2;
 }
 
 .nav-pixel.active {
-    background: var(--csharp-blue);
-    box-shadow: var(--glow-blue);
-    color: var(--vs-text-bright);
+    background: rgba(0, 122, 204, 0.2);
+    border-color: var(--csharp-blue);
+    box-shadow: 0 0 20px rgba(0, 122, 204, 0.4);
 }
 
-/* Partículas de código */
+/* Partículas de código - mais sutis */
 .code-particles {
     position: absolute;
     top: 0;
@@ -335,10 +342,10 @@ nav ul {
 .code-particles::after {
     content: '{ }';
     position: absolute;
-    color: rgba(0, 122, 204, 0.1);
+    color: rgba(0, 122, 204, 0.05);
     font-family: 'Roboto Mono', monospace;
-    font-size: 2rem;
-    animation: float 20s infinite;
+    font-size: 3rem;
+    animation: float 25s infinite;
 }
 
 .code-particles::before {
@@ -350,214 +357,267 @@ nav ul {
 .code-particles::after {
     top: 60%;
     right: 10%;
-    animation-delay: 10s;
+    animation-delay: 12s;
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
-    50% { transform: translateY(-50px) rotate(180deg); opacity: 0.3; }
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+    50% { transform: translateY(-30px) rotate(180deg); opacity: 0.15; }
 }
 
 /* ============================================
-   SEÇÃO SOBRE
+   ANIMAÇÃO DE ENTRADA - Transição ao rolar
+   ============================================ */
+
+section:not(.banner) {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    visibility: hidden;
+}
+
+section:not(.banner).revealed {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Overlay de transição */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        rgba(10, 10, 15, 1) 0%,
+        rgba(10, 10, 15, 0.8) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.transition-overlay.hidden {
+    opacity: 0;
+}
+
+/* ============================================
+   SEÇÃO SOBRE - Design profissional
    ============================================ */
 
 #sobre {
     padding: 6rem 0;
-    background: rgba(30, 30, 30, 0.8);
+    background: rgba(13, 13, 15, 0.6);
     position: relative;
-    border-top: 4px solid var(--dotnet-purple);
-    border-bottom: 4px solid var(--dotnet-purple);
-}
-
-#sobre::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
-    box-shadow: var(--glow-purple);
+    border-top: 1px solid rgba(0, 122, 204, 0.2);
 }
 
 .section-title-pixel {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
-    color: var(--game-cyan);
-    text-shadow: 
-        0 0 10px var(--game-cyan),
-        3px 3px 0 var(--csharp-blue);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 4rem;
+    color: var(--vs-text-bright);
+    font-weight: 700;
     position: relative;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 
-#sobre h2 {
-    font-family: 'Press Start 2P', cursive;
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
-    color: var(--game-cyan);
-    text-shadow: 
-        0 0 10px var(--game-cyan),
-        3px 3px 0 var(--csharp-blue);
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+.section-title-pixel::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
+    border-radius: 2px;
 }
 
 .sobre-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 3rem;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 2rem;
-    border: 3px solid var(--csharp-blue);
-    box-shadow: var(--glow-blue);
+    background: rgba(37, 37, 38, 0.6);
+    padding: 3rem;
+    border: 1px solid rgba(0, 122, 204, 0.2);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-normal);
+}
+
+.sobre-content:hover {
+    border-color: rgba(0, 122, 204, 0.4);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
 }
 
 .profile-pic {
-    width: 200px;
-    height: 200px;
-    border-radius: 0;
+    width: 220px;
+    height: 220px;
+    border-radius: 12px;
     object-fit: cover;
-    border: 4px solid var(--csharp-blue);
-    box-shadow: var(--glow-blue);
-    transition: transform 0.3s ease;
-    image-rendering: pixelated;
+    border: 3px solid var(--csharp-blue);
+    box-shadow: 0 8px 30px rgba(0, 122, 204, 0.3);
+    transition: all var(--transition-normal);
+    flex-shrink: 0;
 }
 
 .profile-pic:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.05);
     border-color: var(--dotnet-purple);
-    box-shadow: var(--glow-purple);
+    box-shadow: 0 12px 40px rgba(104, 33, 122, 0.4);
 }
 
 .sobre-content p {
     flex: 1;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: var(--vs-text);
     text-align: justify;
 }
 
 /* ============================================
-   HABILIDADES - Estilo Game Skills
+   HABILIDADES - Cards profissionais
    ============================================ */
 
 #habilidades {
     padding: 6rem 0;
-    background: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+    background: rgba(10, 10, 15, 0.8);
     position: relative;
+    transition-delay: 0.2s;
 }
 
 .skills-categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* TOOLS centralizado abaixo de DATABASE */
+.skill-category:last-child {
+    grid-column: 2;
+    justify-self: center;
+    max-width: 280px;
 }
 
 .skill-category {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 1.5rem;
-    border: 3px solid var(--csharp-blue);
-    box-shadow: var(--glow-blue);
-    transition: all 0.3s ease;
+    background: rgba(37, 37, 38, 0.6);
+    padding: 2rem;
+    border: 1px solid rgba(0, 122, 204, 0.2);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
 }
 
 .skill-category:hover {
     transform: translateY(-5px);
-    border-color: var(--dotnet-purple);
-    box-shadow: var(--glow-purple);
+    border-color: rgba(0, 122, 204, 0.5);
+    box-shadow: var(--shadow-hover);
 }
 
 .category-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.7rem;
-    color: var(--game-yellow);
-    margin-bottom: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--game-accent);
+    margin-bottom: 1.5rem;
     text-align: center;
-    text-shadow: 0 0 10px var(--game-yellow);
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .skills-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 0.75rem;
     list-style: none;
     justify-content: center;
 }
 
 .skill-item {
-    background: linear-gradient(135deg, var(--csharp-blue-dark), var(--csharp-blue));
+    background: linear-gradient(135deg, rgba(0, 122, 204, 0.2), rgba(0, 122, 204, 0.1));
     color: var(--vs-text-bright);
-    padding: 0.6rem 1.2rem;
-    border: 2px solid var(--csharp-blue-light);
+    padding: 0.65rem 1.2rem;
+    border: 1px solid rgba(0, 122, 204, 0.3);
+    border-radius: 8px;
     font-family: 'Roboto Mono', monospace;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.3);
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
     cursor: default;
     position: relative;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .skill-item::before {
     content: '▸';
     margin-right: 0.5rem;
-    color: var(--game-green);
+    color: var(--game-accent);
+    font-size: 0.8rem;
 }
 
 .skill-item:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: var(--glow-blue);
-    border-color: var(--game-cyan);
+    transform: translateY(-2px);
+    border-color: var(--csharp-blue);
+    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.4);
+    background: linear-gradient(135deg, rgba(0, 122, 204, 0.3), rgba(0, 122, 204, 0.2));
 }
 
 .skill-master {
-    background: linear-gradient(135deg, var(--dotnet-purple), var(--dotnet-purple-dark));
-    border-color: var(--game-green);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+    background: linear-gradient(135deg, rgba(104, 33, 122, 0.3), rgba(104, 33, 122, 0.2));
+    border-color: var(--game-accent);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
 }
 
 .skill-master::before {
     content: '★';
-    color: var(--game-yellow);
+    color: var(--game-accent);
 }
 
 /* ============================================
-   PROJETOS - Cards estilo Game
+   PROJETOS - Cards elegantes
    ============================================ */
 
 #projetos {
     padding: 6rem 0;
-    background: rgba(30, 30, 30, 0.8);
+    background: rgba(13, 13, 15, 0.6);
     position: relative;
-    border-top: 4px solid var(--csharp-blue);
+    border-top: 1px solid rgba(0, 122, 204, 0.2);
+    transition-delay: 0.4s;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2.5rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 .project-card {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(37, 37, 38, 0.6);
     padding: 0;
-    border: 3px solid var(--csharp-blue);
-    box-shadow: var(--glow-blue);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 122, 204, 0.2);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
     text-align: left;
+    backdrop-filter: blur(10px);
 }
 
 .project-card::before {
@@ -566,86 +626,96 @@ nav ul {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
 }
 
 .project-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--dotnet-purple);
-    box-shadow: var(--glow-purple);
+    transform: translateY(-8px);
+    border-color: rgba(0, 122, 204, 0.5);
+    box-shadow: var(--shadow-hover);
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
-    padding: 0.8rem 1rem;
-    background: rgba(0, 122, 204, 0.2);
-    border-bottom: 2px solid var(--csharp-blue);
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 122, 204, 0.2);
 }
 
 .card-level {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.5rem;
-    color: var(--game-green);
-    text-shadow: 0 0 5px var(--game-green);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--game-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .card-tech {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--game-cyan);
+    font-size: 0.75rem;
+    color: var(--vs-text-muted);
+    font-weight: 500;
 }
 
 .project-img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     display: block;
-    border-bottom: 2px solid var(--csharp-blue);
-    transition: transform 0.3s ease;
-    image-rendering: pixelated;
+    transition: transform var(--transition-slow);
 }
 
 .project-card:hover .project-img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .project-card h3 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.3rem;
-    margin: 1rem;
+    font-size: 1.4rem;
+    margin: 1.5rem 1.5rem 1rem;
     color: var(--vs-text-bright);
-    text-shadow: 0 0 10px var(--csharp-blue);
+    font-weight: 700;
 }
 
 .project-card p {
-    font-size: 1rem;
-    margin: 0 1rem 1.5rem;
+    font-size: 0.95rem;
+    margin: 0 1.5rem 1.5rem;
     color: var(--vs-text);
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+.project-card p strong {
+    color: var(--game-accent);
+    font-weight: 600;
 }
 
 .btn-pixel {
     display: block;
     background: linear-gradient(135deg, var(--csharp-blue), var(--csharp-blue-dark));
     color: var(--vs-text-bright);
-    padding: 0.8rem 1.5rem;
+    padding: 0.9rem 1.5rem;
     text-decoration: none;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.6rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
     text-align: center;
-    margin: 0 1rem 1rem;
-    border: 2px solid var(--csharp-blue-light);
-    transition: all 0.3s ease;
+    margin: 0 1.5rem 1.5rem;
+    border: 1px solid rgba(0, 122, 204, 0.5);
+    border-radius: 8px;
+    transition: all var(--transition-normal);
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.3);
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 122, 204, 0.2);
 }
 
 .btn-pixel:hover {
     background: linear-gradient(135deg, var(--dotnet-purple), var(--dotnet-purple-dark));
-    border-color: var(--game-green);
-    box-shadow: var(--glow-green);
+    border-color: var(--game-accent);
+    box-shadow: 0 6px 20px rgba(104, 33, 122, 0.4);
     transform: translateY(-2px);
 }
 
@@ -654,19 +724,20 @@ nav ul {
 }
 
 /* ============================================
-   CONTATO - Cards estilo Game
+   CONTATO - Cards interativos
    ============================================ */
 
 #contato {
     padding: 6rem 0;
-    background: linear-gradient(135deg, rgba(13, 13, 13, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+    background: rgba(10, 10, 15, 0.8);
     position: relative;
-    border-top: 4px solid var(--dotnet-purple);
+    border-top: 1px solid rgba(0, 122, 204, 0.2);
+    transition-delay: 0.6s;
 }
 
 .contact-subtitle {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     font-size: 1.1rem;
     color: var(--vs-text);
     font-family: 'Roboto Mono', monospace;
@@ -680,52 +751,56 @@ nav ul {
 }
 
 .contact-card {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 2rem;
-    border: 3px solid var(--csharp-blue);
+    background: rgba(37, 37, 38, 0.6);
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(0, 122, 204, 0.2);
     text-decoration: none;
     color: var(--vs-text-bright);
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: var(--glow-blue);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-card);
     display: block;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
 }
 
 .contact-card:hover {
-    transform: translateY(-5px) scale(1.05);
-    border-color: var(--dotnet-purple);
-    box-shadow: var(--glow-purple);
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(0, 122, 204, 0.5);
+    box-shadow: var(--shadow-hover);
 }
 
 .contact-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
     display: block;
-    filter: drop-shadow(0 0 10px var(--csharp-blue));
+    filter: drop-shadow(0 0 10px rgba(0, 122, 204, 0.5));
+    transition: all var(--transition-normal);
 }
 
 .contact-card:hover .contact-icon {
-    animation: bounce 0.5s ease;
-    filter: drop-shadow(0 0 15px var(--game-green));
+    animation: bounce 0.6s ease;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.8));
+    transform: scale(1.1);
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { transform: translateY(0) scale(1.1); }
+    50% { transform: translateY(-10px) scale(1.1); }
 }
 
 .contact-card h3 {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--game-cyan);
-    text-shadow: 0 0 10px var(--game-cyan);
+    color: var(--game-accent);
+    font-weight: 700;
 }
 
 .contact-card p {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.9rem;
-    color: var(--vs-text);
+    color: var(--vs-text-muted);
 }
 
 /* ============================================
@@ -733,110 +808,146 @@ nav ul {
    ============================================ */
 
 footer {
-    background: linear-gradient(135deg, var(--vs-darker) 0%, var(--dotnet-purple-dark) 100%);
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
     color: var(--vs-text);
     text-align: center;
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     position: relative;
-    border-top: 4px solid var(--csharp-blue);
+    border-top: 1px solid rgba(0, 122, 204, 0.2);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--csharp-blue), var(--dotnet-purple));
-    box-shadow: var(--glow-blue);
+footer.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 footer p {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.9rem;
     margin: 0;
-    color: var(--vs-text);
+    color: var(--vs-text-muted);
 }
 
 /* ============================================
-   RESPONSIVIDADE
+   RESPONSIVIDADE PROFISSIONAL
    ============================================ */
 
-@media (max-width: 768px) {
-    .banner h1 {
-        font-size: 2rem;
+@media (max-width: 968px) {
+    .container {
+        padding: 0 1.5rem;
     }
-
-    .subtitle-pixel {
-        font-size: 0.6rem;
+    
+    .banner {
+        padding: 4rem 0 5rem;
     }
-
+    
     .game-ui-top {
         flex-direction: column;
         gap: 1rem;
+        padding: 1rem;
     }
-
+    
     .xp-bar {
         max-width: 100%;
         margin-left: 0;
     }
-
+    
     nav ul {
-        flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
     }
-
+    
     .nav-pixel {
-        width: 100%;
-        text-align: center;
+        font-size: 0.75rem;
+        padding: 0.6rem 1.2rem;
     }
-
+    
     .sobre-content {
         flex-direction: column;
         text-align: center;
+        padding: 2rem;
     }
-
+    
     .profile-pic {
         margin: 0 auto;
     }
-
+    
     .projects-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
     }
-
+    
     .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-
+    
     .skills-categories {
         grid-template-columns: 1fr;
     }
-
-    .section-title-pixel {
-        font-size: 1rem;
+    
+    /* Em telas menores, TOOLS volta ao comportamento normal */
+    .skill-category:last-child {
+        grid-column: 1;
+        justify-self: stretch;
+        max-width: none;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
     .banner h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle-pixel {
+        font-size: 0.85rem;
+    }
+    
+    .section-title-pixel {
         font-size: 1.5rem;
     }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    .project-card {
-        padding: 0;
-    }
-
-    .contact-card {
+    
+    .sobre-content {
         padding: 1.5rem;
     }
-
-    .game-ui-top {
-        font-size: 0.5rem;
+    
+    .profile-pic {
+        width: 180px;
+        height: 180px;
     }
+    
+    .project-card {
+        margin: 0;
+    }
+    
+    .contact-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .game-ui-top {
+        font-size: 0.65rem;
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--vs-darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--csharp-blue);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dotnet-purple);
 }
