@@ -309,7 +309,7 @@ document.querySelectorAll('.contact-card').forEach(card => {
 // Console log profissional
 console.log('%c💼 PORTFÓLIO PROFISSIONAL 💼', 'color: #00FF88; font-size: 18px; font-weight: bold;');
 console.log('%cDesenvolvido por Vinicius Guilherme', 'color: #007ACC; font-size: 12px;');
-console.log('%cStack: C# | .NET | ASP.NET Core', 'color: #68217A; font-size: 10px;');
+console.log('%cStack: C# | .NET | React | TypeScript', 'color: #68217A; font-size: 10px;');
 
 // Efeito de loading suave
 window.addEventListener('load', () => {

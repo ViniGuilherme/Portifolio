@@ -483,6 +483,11 @@ section:not(.banner).revealed {
     text-align: justify;
 }
 
+.sobre-content p strong {
+    color: var(--game-accent);
+    font-weight: 600;
+}
+
 /* ============================================
    HABILIDADES - Cards profissionais
    ============================================ */
