@@ -605,11 +605,32 @@ section:not(.banner).revealed {
     transition-delay: 0.4s;
 }
 
+.projects-github-note {
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--vs-text-muted);
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.projects-github-note a {
+    color: var(--csharp-blue-light);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.projects-github-note a:hover {
+    color: var(--game-accent);
+    text-decoration: underline;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2.5rem;
-    margin-top: 3rem;
+    margin-top: 0;
 }
 
 .project-card {
